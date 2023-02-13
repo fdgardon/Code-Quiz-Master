@@ -1,0 +1,59 @@
+
+
+body{
+    background-color: darkturquoise;
+}
+
+
+.Top-bar{
+    display: flex;
+    background-color: rgba(220, 15, 15, 0.5);
+    position: sticky;
+    top: 5px;
+    padding-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+
+}
+#highscores{
+    background-color: rgb(43, 226, 220);
+    color: white;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-left: 10px;
+    box-sizing: 30px;
+    border-color: white;
+}
+.timer{
+    color: white;
+    margin-left: 75%;
+    margin-top: 19px;
+}
+
+.card-content{
+  margin-top: 300px;
+  margin-left: 25%;
+}
+#head{
+  text-shadow: 0 0 2px black;
+}
+
+#startBtn{
+  font-size: 20px;
+  background-color: lightgrey;
+  margin-left: 25%;
+}
+
+#Question{
+  display: block;
+  margin-left: 35%;
+  margin-top: 60px;
+}
+
+#Choices {
+  padding-left: 20px;
+  font-size: 18px;
+  margin-left: 40%;
+  
+}
