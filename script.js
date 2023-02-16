@@ -7,7 +7,7 @@ var questions = [
         { question: "How many states buld United States of America?", choices: ["30", "40", "50", "60"], answer: "50" }
 ];
 
-var timeLeft = 60; //set timer to 30
+var timeLeft = 60; //set timer to 60
 var time = document.getElementById("time")
 var startbtn = document.getElementById("startBtn")
 var quiz = document.querySelector(".Quiz")
@@ -16,12 +16,13 @@ var button = document.getElementById("Button")
 var track = 0
 var welcome = document.getElementById("Welcome")
 var currentQuestionIndex = 0;
-var choices = document.getElementById("Choices")
+var choices = document.getElementById("choices")
 var submitBtn = document.getElementById("submit")
 var initials = document.getElementById("initials")
 var feedback = document.getElementById("feedback")
 var highscoreBtn = document.getElementById("highscores")
 var final = document.getElementById("final")
+
 
 
 
@@ -57,18 +58,44 @@ function startQuiz() {
         countdown()
         displayquestion()
 
+
 }
 
 function displayquestion() {
         question.textContent = questions[track].question
+        displaychoices()
 }
 
 
+function displaychoices() {
+        choices.innerHTML = ""
+        for (var i = 0; i < questions[track].choices.length; i++) {
+                var createBtn = document.createElement("button")
+                createBtn.textContent = questions[track].choices[i]
+                createBtn.onclick = correctAnwser
+                choices.append(createBtn)
+        }
 
-function displaychoices (){
-choices.textContent = questions[track].choices
 }
-//generateQuestions = () => {
+
+function correctAnwser(event) {
+        console.log(event.target)
+        if (event.target.textContent === questions[track].answer) {
+                console.log("correct");
+
+        } else {
+                console.log("wrong")
+        }
+      
+        track++
+        if (track>=questions.length){
+                console.log("GameOver")
+        }else {
+          displayquestion()
+        }
+        
+}
+
 
 
 startbtn.addEventListener("click", startQuiz);
