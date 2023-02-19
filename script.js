@@ -1,14 +1,16 @@
+
 var questions = [
 
         { question: "How many seasons are there in a year?", choices: ["Three", "Four", "Five", "Six"], answer: "Four" },
         { question: "In which season we will see snow?", choices: ["Spring", "Summer", "Autumn", "Winter"], answer: "Winter" },
         { question: "Which city is the capital of California?", choices: ["Sacramento", "Los Angeles", "San Francisco", "San Diego"], answer: "Sacramento" },
         { question: "Which state is the golden state?", choices: ["California", "Nevada", "Virginia", "Arizona"], answer: "California" },
-        { question: "How many states buld United States of America?", choices: ["30", "40", "50", "60"], answer: "50" }
+        { question: "How many states buld United States of America?", choices: ["30", "40", "50", "60"], answer: "50" },
 ];
 
 var timeLeft = 60; //set timer to 60
 var time = document.getElementById("time")
+var timerId;
 var startbtn = document.getElementById("startBtn")
 var quiz = document.querySelector(".Quiz")
 var question = document.getElementById("Question")
@@ -17,11 +19,13 @@ var track = 0
 var welcome = document.getElementById("Welcome")
 var currentQuestionIndex = 0;
 var choices = document.getElementById("choices")
-var submitBtn = document.getElementById("submit")
+//var submitBtn = document.getElementById("submit")
 var initials = document.getElementById("initials")
 var feedback = document.getElementById("feedback")
-var highscoreBtn = document.getElementById("highscores")
+var highscore = document.getElementById("highscores")
 var final = document.getElementById("final")
+var finalScore = document.getElementById("finalScore")
+var score = 0;
 
 
 
@@ -50,11 +54,13 @@ function countdown() {
 
                 }
         }, 1000);
+
+        
 }
+
 function startQuiz() {
         startbtn.style.display = "none"
         welcome.style.display = "none"
-        final.style.display = "none"
         countdown()
         displayquestion()
 
@@ -81,25 +87,45 @@ function displaychoices() {
 function correctAnwser(event) {
         console.log(event.target)
         if (event.target.textContent === questions[track].answer) {
-                console.log("correct");
+                score++;
 
         } else {
-                console.log("wrong")
+                timeLeft -= 15;
         }
-      
+
         track++
-        if (track>=questions.length){
-                console.log("GameOver")
-        }else {
-          displayquestion()
+        if (track >= questions.length) {
+                // console.log("GameOver")
+                final.classList.remove("hide")
+                quiz.classList.add("hide")
+                finalScore.textContent = timeLeft;
+        } else {
+                displayquestion()
+        
+
+                
         }
         
-}
+};
 
 
 
 startbtn.addEventListener("click", startQuiz);
+//submitBtn.addEventListener("click", saveHighScore)
+
+// ///////////////////////////////////////////////////////////////////////////
 
 
+let submitBtn = {
+        finalScore: "",
+        initials: ""
 
+};
+let submitBtn_serialized = JSON.stringify(submitBtn);
+
+localStorage.setItem("submitBtn", submitBtn_serialized);
+
+let submitBtn_deserialized = JSON.parse(localStorage.getItem("submitBtn"));
+
+console.log(submitBtn_deserialized);
 

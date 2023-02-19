@@ -23,7 +23,7 @@ body{
     margin-top: 15px;
     margin-left: 10px;
     box-sizing: 30px;
-    border-color: white;
+    border-color: none;
 }
 .timer{
     color: white;
@@ -56,4 +56,13 @@ body{
   font-size: 18px;
   margin-left: 40%;
   
+}
+
+.hide {
+  display: none;
+}
+
+#final{
+  margin-left: 35%;
+  margin-top: 60px;
 }
