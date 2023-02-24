@@ -16,7 +16,8 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and score
 
-Website Page Img:
+Website <img width="1434" alt="Screen Shot 2023-02-23 at 9 11 08 PM" src="https://user-images.githubusercontent.com/119641606/221097553-3a43153e-d6ac-4ed4-9072-d95e3738323f.png">
+Page Img:
 
 
 Website Link:
