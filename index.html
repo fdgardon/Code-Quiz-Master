@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Master</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+
+</head>
+
+<body>
+  <div class="Top-bar">
+    <div class="scores">
+      <button id="highscores">Highscores</button>
+    </div>
+    <div class="timer">Time Left: <span id="time">60 seconds remaining</span></div>
+  </div>
+
+  <div class="card-content" id="Welcome">
+    <h1 id="head">Coding Quiz Challenge</h1>
+    <p id="paragraph">Try to answer the following questions within
+      the time limit. Keep in mind that incorrect anwsers will
+      penalize your time by 20 seconds!</p>
+
+    <button id="startBtn">Start Quiz</button>
+  </div>
+
+  <div class="Quiz">
+    <h2 id="Question"></h2>
+    <div id="choices" class="choices"></div>
+    <div id="button"></div>
+  </div>
+
+  <div id="final" class="hide">
+    <h2>All done!</h2>
+    <p>Your final score is: <span id="finalScore"></span>.</p>
+    <p>
+      Enter initials: <input type="text" id="initials" max="3" />
+      <button id="submit">Submit</button>
+    </p>
+  </div>
+
+  <div id="high-score-container" class="hide">
+    <div class="high-scores container">
+      <h1 class="high-score">HighScores</h1>
+      <ol id="high-score-list" class="score-list"></ol>
+  <div>
+      <button type="Btn" id="goBack">Go back</button>
+      <button class="btn" id="clear-high-scores">Clear high scores</button>
+  </div>
+  </div>
+
+  <div id="feedback" class="feedback hide"></div>
+  </div>
+
+  <script src="./assets/js/script.js"></script>
+  
+ 
+</body>
+</html>
