@@ -10,13 +10,10 @@ var questions = [
 
 var timeLeft = 60; //set timer to 60
 var time = document.getElementById("time")
-var timerId;
 var mainContent = document.querySelector(".card-content")
 var startbtn = document.getElementById("startBtn")
 var quiz = document.querySelector(".Quiz")///1
-var headEl = document.getElementById("head")////2
 var question = document.getElementById("Question")
-var button = document.getElementById("Button")
 var track = 0
 var welcome = document.getElementById("Welcome")
 var currentQuestionIndex = 0;
@@ -24,14 +21,12 @@ var choices = document.getElementById("choices")
 var submitBtn = document.getElementById("submit")
 var initials = document.getElementById("initials")///////5
 var containerHighScoresEl = document.getElementById("high-score-container")/////6
-var feedback = document.getElementById("feedback")
-var highscore = document.getElementById("highscores")////7
+var highscoreBtn = document.getElementById("highscores")////7
 var final = document.getElementById("final")////3
-var finalScore = document.getElementById("finalScore")////4
-var listHighScoreEl = document.getElementById("high-score-list")/////8
-var arrayShuffledQuestions//////12
+var listHighScoreEl = document.getElementById("high-score-list")
+var clearBtn= document.getElementById("clear-high-scores")
 var score = 0;
-var timeInterval; 
+var timeInterval;
 var gobackBtn = document.getElementById("goBack");
 time.innerText = 60
 var gameover
@@ -40,7 +35,7 @@ function countdown() {
 
 
         // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-         timeInterval = setInterval(function () {
+        timeInterval = setInterval(function () {
                 // As long as the `timeLeft` is greater than 1
                 if (timeLeft > 1) {
                         // Set the `textContent` of `timerEl` to show the remaining seconds
@@ -93,9 +88,11 @@ function correctAnwser(event) {
         console.log(event.target)
         if (event.target.textContent === questions[track].answer) {
                 score++;
+                alert("Correct Answer")
 
         } else {
                 timeLeft -= 20;
+                alert("Wrong Answer")
         }
 
         track++
@@ -126,16 +123,16 @@ function submitScore() {
         var scoreResult = JSON.parse(window.localStorage.getItem("timeLeft"));
         console.log(localStorage);
 
-const scoreEl = document.createElement("li")
+        const scoreEl = document.createElement("li")
 
-scoreEl.textContent = storResult + " " + scoreResult
+        scoreEl.textContent = storResult + " " + scoreResult
 
-listHighScoreEl.append(scoreEl)
+        listHighScoreEl.append(scoreEl)
 
 };
 
 function displayResult() {
-listHighScoreEl.textContent = initials.value;
+        listHighScoreEl.textContent = initials.value;
 
 }
 
@@ -148,15 +145,36 @@ var renderStartPage = function () {
 
         QuestionIndex = 0
         gameover = ""
-        time.textContent = 60 
+        time.textContent = 60
         score = 0
 }
 
+function highScoreList() {
 
-/////////////////////////////////////////
-/////////////////////////////////////////
+        containerHighScoresEl.style.display = "block"
+        listHighScoreEl.style.display = "block"
+
+        mainContent.style.display = "none"
+
+        storResult = JSON.parse(window.localStorage.getItem("initials"));
+        scoreResult = JSON.parse(window.localStorage.getItem("timeLeft"));
+        console.log(localStorage)
+
+        const scoreEl = document.createElement("li")
+
+        scoreEl.textContent = storResult + " " + scoreResult
+
+        listHighScoreEl.append(scoreEl)
+}
+
+function clearScores() {
+listHighScoreEl.style.display = "none"
+}
+
 startbtn.addEventListener("click", startQuiz);
 submitBtn.addEventListener("click", submitScore);
 gobackBtn.addEventListener("click", renderStartPage);
+highscoreBtn.addEventListener("click", highScoreList);
+clearBtn.addEventListener("click", clearScores)
 
 
