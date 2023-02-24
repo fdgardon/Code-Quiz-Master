@@ -28,7 +28,7 @@ var clearBtn= document.getElementById("clear-high-scores")
 var score = 0;
 var timeInterval;
 var gobackBtn = document.getElementById("goBack");
-time.innerText = 60
+time.innerText 
 var gameover
 
 function countdown() {
@@ -145,7 +145,7 @@ var renderStartPage = function () {
 
         QuestionIndex = 0
         gameover = ""
-        time.textContent = 60
+        time.textContent
         score = 0
 }
 
