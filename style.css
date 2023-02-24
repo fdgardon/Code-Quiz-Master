@@ -66,3 +66,12 @@ body{
   margin-left: 35%;
   margin-top: 60px;
 }
+
+#high-score-container{
+  margin-left: 35%;
+  margin-top: 60px;
+}
+
+#high-score-list {
+  font-size: 18px;
+}

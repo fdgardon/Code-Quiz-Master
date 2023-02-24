@@ -12,29 +12,34 @@ var timeLeft = 60; //set timer to 60
 var time = document.getElementById("time")
 var timerId;
 var startbtn = document.getElementById("startBtn")
-var quiz = document.querySelector(".Quiz")
+var quiz = document.querySelector(".Quiz")///1
+var headEl = document.getElementById("head")////2
 var question = document.getElementById("Question")
 var button = document.getElementById("Button")
 var track = 0
 var welcome = document.getElementById("Welcome")
 var currentQuestionIndex = 0;
 var choices = document.getElementById("choices")
-//var submitBtn = document.getElementById("submit")
-var initials = document.getElementById("initials")
+var submitBtn = document.getElementById("submit")
+var initials = document.getElementById("initials")///////5
+var containerHighScoresEl = document.getElementById("high-score-container")/////6
 var feedback = document.getElementById("feedback")
-var highscore = document.getElementById("highscores")
-var final = document.getElementById("final")
-var finalScore = document.getElementById("finalScore")
+var highscore = document.getElementById("highscores")////7
+var final = document.getElementById("final")////3
+var finalScore = document.getElementById("finalScore")////4
+var listHighScoreEl = document.getElementById("high-score-list")/////8
+var arrayShuffledQuestions//////12
 var score = 0;
-
-
-
+var timeInterval; 
+var gobackBtn = document.getElementById("goBack");
+time.innerText = 0
+var gameover
 
 function countdown() {
 
 
         // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-        var timeInterval = setInterval(function () {
+         timeInterval = setInterval(function () {
                 // As long as the `timeLeft` is greater than 1
                 if (timeLeft > 1) {
                         // Set the `textContent` of `timerEl` to show the remaining seconds
@@ -51,12 +56,11 @@ function countdown() {
                         // Use `clearInterval()` to stop the timer
                         clearInterval(timeInterval);
                         // Call the `displayMessage()` run in the game function
-
                 }
         }, 1000);
 
-        
-}
+
+};
 
 function startQuiz() {
         startbtn.style.display = "none"
@@ -65,12 +69,12 @@ function startQuiz() {
         displayquestion()
 
 
-}
+};
 
 function displayquestion() {
         question.textContent = questions[track].question
         displaychoices()
-}
+};
 
 
 function displaychoices() {
@@ -82,7 +86,7 @@ function displaychoices() {
                 choices.append(createBtn)
         }
 
-}
+};
 
 function correctAnwser(event) {
         console.log(event.target)
@@ -90,42 +94,69 @@ function correctAnwser(event) {
                 score++;
 
         } else {
-                timeLeft -= 15;
+                timeLeft -= 20;
         }
 
         track++
         if (track >= questions.length) {
-                // console.log("GameOver")
                 final.classList.remove("hide")
                 quiz.classList.add("hide")
                 finalScore.textContent = timeLeft;
         } else {
                 displayquestion()
-        
-
-                
+                displayResult()
         }
-        
 };
 
+function submitScore() {
+        clearInterval(timeInterval)
+        let initials = document.getElementById('initials');
+        initials = initials.value;
+
+        localStorage.setItem('timeLeft', timeLeft);
+        localStorage.setItem('initials', initials);
+
+        final.classList.add("hide")
+        containerHighScoresEl.classList.remove("hide");
+
+        localStorage.setItem("initials", JSON.stringify(initials));
+
+        var storResult = JSON.parse(window.localStorage.getItem("initials"));
+        var scoreResult = JSON.parse(window.localStorage.getItem("timeLeft"));
+        console.log(localStorage);
+
+const scoreEl = document.createElement("li")
+
+scoreEl.textContent = storResult + " " + scoreResult
+
+listHighScoreEl.append(scoreEl)
+
+};
+
+function displayResult() {
+listHighScoreEl.textContent = initials.value;
+
+}
+
+var renderStartPage = function () {
+        welcome.classList.add("show")
+        startbtn.classList.add("hide")
+        final.classList.add("hide")
+        final.classList.remove("show")
+        containerStartEl.classList.remove("hide")
+        containerStartEl.classList.add("show")
+        containerScoreEl.removeChild(containerScoreEl.lastChild)
+        currentQuestionIndex = 0
+        gameover = ""
+        time.textContent = 0 
+        score = 0
+}
 
 
+/////////////////////////////////////////
+/////////////////////////////////////////
 startbtn.addEventListener("click", startQuiz);
-//submitBtn.addEventListener("click", saveHighScore)
+submitBtn.addEventListener("click", submitScore);
+gobackBtn.addEventListener("click", renderStartPage);
 
-// ///////////////////////////////////////////////////////////////////////////
-
-
-let submitBtn = {
-        finalScore: "",
-        initials: ""
-
-};
-let submitBtn_serialized = JSON.stringify(submitBtn);
-
-localStorage.setItem("submitBtn", submitBtn_serialized);
-
-let submitBtn_deserialized = JSON.parse(localStorage.getItem("submitBtn"));
-
-console.log(submitBtn_deserialized);
 
