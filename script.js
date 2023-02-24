@@ -11,6 +11,7 @@ var questions = [
 var timeLeft = 60; //set timer to 60
 var time = document.getElementById("time")
 var timerId;
+var mainContent = document.querySelector(".card-content")
 var startbtn = document.getElementById("startBtn")
 var quiz = document.querySelector(".Quiz")///1
 var headEl = document.getElementById("head")////2
@@ -32,7 +33,7 @@ var arrayShuffledQuestions//////12
 var score = 0;
 var timeInterval; 
 var gobackBtn = document.getElementById("goBack");
-time.innerText = 0
+time.innerText = 60
 var gameover
 
 function countdown() {
@@ -139,16 +140,15 @@ listHighScoreEl.textContent = initials.value;
 }
 
 var renderStartPage = function () {
-        welcome.classList.add("show")
-        startbtn.classList.add("hide")
-        final.classList.add("hide")
-        final.classList.remove("show")
-        containerStartEl.classList.remove("hide")
-        containerStartEl.classList.add("show")
-        containerScoreEl.removeChild(containerScoreEl.lastChild)
-        currentQuestionIndex = 0
+
+        mainContent.style.display = "block"
+        startbtn.style.display = "block"
+
+        containerHighScoresEl.style.display = "none"
+
+        QuestionIndex = 0
         gameover = ""
-        time.textContent = 0 
+        time.textContent = 60 
         score = 0
 }
 
